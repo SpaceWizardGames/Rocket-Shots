@@ -23,6 +23,18 @@ public class Rocket : MonoBehaviour {
         Rotate();	
 	}
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly": // safe collision
+                break;
+            case "Fuel": // collect fuel
+                break;
+            default: // kill player
+                break;
+        }
+    }
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -41,19 +53,21 @@ public class Rocket : MonoBehaviour {
 
     private void Rotate()
     {
-        rigidBody.freezeRotation = true; // user control
+        rigidBody.freezeRotation = true; // manually control rotation
+
         float rotationThisFrame = sideThrusters * Time.deltaTime;
 
-        while (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space)== true)
             if (Input.GetKey(KeyCode.A))
-        {
+            {
             transform.Rotate(Vector3.forward * rotationThisFrame);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
+            }
+             else if (Input.GetKey(KeyCode.D))
+             {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
-        }
+             }
 
-        rigidBody.freezeRotation = false;
+        rigidBody.freezeRotation = false; // physics resume
     }
 }
+
