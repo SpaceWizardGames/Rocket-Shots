@@ -587,7 +587,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 820bd6c5883ab6a4cb616d234aef8982, type: 2}
+  - {fileID: 2100000, guid: b400f035780b6c84fb1b8210a3590709, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -670,8 +670,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1307351654854396}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.2
+  m_Mass: 2.5
+  m_Drag: 0.35
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -868,8 +868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10a025a269b8944a97405221ab63479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 200
-  mainThrust: 50
+  sideThrusters: 300
+  mainThruster: 50
 --- !u!135 &135390665766893870
 SphereCollider:
   m_ObjectHideFlags: 1
