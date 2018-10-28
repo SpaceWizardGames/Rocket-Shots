@@ -1,40 +1,65 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Rocket : MonoBehaviour {
-
+public class Rocket : MonoBehaviour
+{
    [SerializeField] float sideThrusters = 200f;
    [SerializeField] float mainThruster = 50f;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    enum State { Alive, Dying, Advancing }
+    State state = State.Alive;
+
     // initialization
-    void Start () {
+    void Start ()
+    {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-		}
+    }
 
     // once per frame
-    void Update() {
-        Thrust();
-        Rotate();	
+    void Update()
+    {
+        if (state == State.Alive)
+        {
+            Thrust();
+            Rotate();
+        }
 	}
 
-    private void OnCollisionEnter(Collision collision)
+     void OnCollisionEnter(Collision collision)
     {
+        if (state != State.Alive) // ignore collisions after death
+        {
+            return;
+        }
         switch (collision.gameObject.tag)
         {
             case "Friendly": // safe collision
                 break;
-            case "Fuel": // collect fuel
+            case "Finish": // advance to next level
+                state = State.Advancing;
+                Invoke("LoadNextScene", 1f); // wait period before next level
                 break;
             default: // kill player
+                state = State.Dying;
+                Invoke("RestartGame", 1f); // wait period before restart
                 break;
         }
     }
+
+    private  void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private  void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
