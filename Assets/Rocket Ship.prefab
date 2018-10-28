@@ -759,7 +759,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0d08131492c14b947bad28d3e1eac4ce, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.85
@@ -858,6 +858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sideThrusters: 300
   mainThruster: 75
+  levelComplete: {fileID: 8300000, guid: 0d85096b4f51cf248a43cf002c029ed0, type: 3}
+  death: {fileID: 8300000, guid: d2508c5cf44ed5b4baa66eeb2cc1d872, type: 3}
+  mainEngine: {fileID: 8300000, guid: 9349a40884624ef44a6684857a0997e0, type: 3}
 --- !u!136 &136545271051861630
 CapsuleCollider:
   m_ObjectHideFlags: 1
