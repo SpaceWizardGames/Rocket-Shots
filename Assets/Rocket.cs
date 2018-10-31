@@ -5,9 +5,12 @@ public class Rocket : MonoBehaviour
 {
    [SerializeField] float sideThrusters = 200f;
    [SerializeField] float mainThruster = 50f;
+   [SerializeField]float SceneLoadDelay = 3f;
+
    [SerializeField] AudioClip levelComplete;
    [SerializeField] AudioClip death;
    [SerializeField] AudioClip mainEngine;
+
    [SerializeField] ParticleSystem levelCompleteParticles;
    [SerializeField] ParticleSystem deathParticles;
    [SerializeField] ParticleSystem mainEngineParticles;
@@ -58,10 +61,10 @@ public class Rocket : MonoBehaviour
     {
         state = State.Advancing;
         audioSource.Stop();
-        audioSource.PlayOneShot(levelComplete);
+        audioSource.PlayOneShot(levelComplete, 0.4f);
         levelCompleteParticles.Play();
         mainEngineParticles.Stop();
-        Invoke("LoadNextScene", 3f); // wait period before next level
+        Invoke("LoadNextScene", SceneLoadDelay); // wait period before next level
 
     }
 
@@ -72,7 +75,7 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(death);
         deathParticles.Play();
         mainEngineParticles.Stop();
-        Invoke("RestartGame", 3f); // wait period before restart
+        Invoke("RestartGame", SceneLoadDelay); // wait period before restart
     }
 
     private void RestartGame()

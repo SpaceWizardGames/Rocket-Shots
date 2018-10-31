@@ -22,7 +22,7 @@ public class ObstacleMover : MonoBehaviour {
 	void Update ()
     {
         // set movement factor
-
+        if (period <= Mathf.Epsilon) { return; } // protects from 0 division
         float cycles = Time.time / period; // grows from 0
 
         const float tau = Mathf.PI * 2; // set tau
