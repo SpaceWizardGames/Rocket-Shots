@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sideThrusters: 300
-  mainThruster: 1250
+  mainThruster: 1000
   SceneLoadDelay: 3
   levelComplete: {fileID: 8300000, guid: 0d85096b4f51cf248a43cf002c029ed0, type: 3}
   death: {fileID: 8300000, guid: d2508c5cf44ed5b4baa66eeb2cc1d872, type: 3}
