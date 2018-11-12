@@ -36,17 +36,8 @@ public class Rocket : MonoBehaviour
             RespondToThrustInput();
             RespondToRotateInput();
         }
-        // todo: allow to work only in debug mode
-        RespondToDebugKeys();
+    
 	}
-
-    private void RespondToDebugKeys()
-    {
-        if (Input.GetKeyDown
-        {
-            LoadNextScene();
-        }
-    }
 
      void OnCollisionEnter(Collision collision)
     {
