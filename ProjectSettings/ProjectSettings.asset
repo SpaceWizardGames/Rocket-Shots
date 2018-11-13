@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: ebe56279dec04e648a66c6f8646190da
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -728,7 +728,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
   cloudProjectId: 76ed4742-7b82-47a7-aafe-9fa466405ea9
-  projectName: EffectsExamples
+  projectName: Project Boost
   organizationId: 0fx-games
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
