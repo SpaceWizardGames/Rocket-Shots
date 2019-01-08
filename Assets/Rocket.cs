@@ -3,17 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
-   [SerializeField] float sideThrusters = 200f;
-   [SerializeField] float mainThruster = 50f;
-   [SerializeField]float SceneLoadDelay = 3f;
+    [SerializeField] float sideThrusters = 200f;
+    [SerializeField] float mainThruster = 50f;
+    [SerializeField] float SceneLoadDelay = 3f;
 
-   [SerializeField] AudioClip levelComplete;
-   [SerializeField] AudioClip death;
-   [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip levelComplete;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip mainEngine;
 
-   [SerializeField] ParticleSystem levelCompleteParticles;
-   [SerializeField] ParticleSystem deathParticles;
-   [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem levelCompleteParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem mainEngineParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -21,8 +21,10 @@ public class Rocket : MonoBehaviour
     enum State { Alive, Dying, Advancing }
     State state = State.Alive;
 
+    bool collisionsDisabled = false;
+
     // initialization
-    void Start ()
+    void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -36,12 +38,29 @@ public class Rocket : MonoBehaviour
             RespondToThrustInput();
             RespondToRotateInput();
         }
-    
-	}
+        if (Debug.isDebugBuild)
+        {
+            RespondToDebugKeys();
+        }
+    }
 
-     void OnCollisionEnter(Collision collision)
+    private void RespondToDebugKeys()
     {
-        if (state != State.Alive) // ignore collisions after death
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScene();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled; // toggle
+        }
+
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (state != State.Alive || collisionsDisabled) 
         {
             return;
         }
